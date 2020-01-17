@@ -33,16 +33,33 @@ const getCarsPrices = async() => {
     let resp = await axios.get(`${process.env.API_URL}`);
     let carPrices = await [...resp.data.prices];
     return carPrices;
-
 };
 
 const getCars = async(req, res) => {
     try {
         let cardPrices = await getCarsPrices();
         // console.log(cardPrices);
+        let carFullInfo = [];
+        let objectCar = {};
+        cars.forEach(car => {
+            cardPrices.forEach(price => {
+                if (car.model === price.model) {
+                    objectCar = {
+                        manufacturer: car.manufacturer,
+                        model: car.model,
+                        wiki: car.wiki,
+                        img: car.img,
+                        price: price.price
+
+                    };
+                }
+            });
+            carFullInfo.push(objectCar);
+        });
         res.json({
             ok: true,
             message: 'get list of cars successfully',
+            carFullInfo: carFullInfo,
             cars: cars,
             carsPrices: cardPrices
         });
