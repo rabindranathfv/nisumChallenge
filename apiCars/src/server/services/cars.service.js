@@ -31,7 +31,7 @@ const cars = [{
 
 const getCarsPrices = async() => {
     let resp = await axios.get(`${process.env.API_URL}`);
-    let carPrices = await {...resp.prices };
+    let carPrices = await [...resp.data.prices];
     return carPrices;
 
 };
@@ -39,6 +39,7 @@ const getCarsPrices = async() => {
 const getCars = async(req, res) => {
     try {
         let cardPrices = await getCarsPrices();
+        // console.log(cardPrices);
         res.json({
             ok: true,
             message: 'get list of cars successfully',
