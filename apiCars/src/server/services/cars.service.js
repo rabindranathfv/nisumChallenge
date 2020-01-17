@@ -1,5 +1,6 @@
 'use strict';
 const _ = require('underscore');
+const axios = require('axios');
 
 const cars = [{
     manufacturer: 'Porsche',
@@ -28,13 +29,21 @@ const cars = [{
     img: '250px-2007_Audi_TT_Coupe.jpg'
 }];
 
+const getCarsPrices = async() => {
+    let resp = await axios.get(`${process.env.API_URL}`);
+    let carPrices = await {...resp.prices };
+    return carPrices;
+
+};
+
 const getCars = async(req, res) => {
     try {
-        console.log('llego al servicio');
+        Let cardPrices = await getCarsPrices();
         res.json({
             ok: true,
             message: 'get list of cars successfully',
-            cars: cars
+            cars: cars,
+            carsPrices: cardPrices
         });
     } catch (error) {
         res.status(500).json({
@@ -45,5 +54,6 @@ const getCars = async(req, res) => {
 }
 
 module.exports = {
-    getCars
+    getCars,
+    getCarsPrices
 }
