@@ -38,7 +38,7 @@ const getCarsPrices = async() => {
 
 const getCars = async(req, res) => {
     try {
-        Let cardPrices = await getCarsPrices();
+        let cardPrices = await getCarsPrices();
         res.json({
             ok: true,
             message: 'get list of cars successfully',
