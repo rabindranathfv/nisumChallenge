@@ -1,0 +1,4 @@
+apiCars/src/node_modules/*
+apiPricEs/src/node_modules/*
+apiPricEs/src/server/config/.env
+apiCars/src/server/config/.env
