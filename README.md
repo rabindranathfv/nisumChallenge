@@ -1,8 +1,8 @@
 ﻿# nisumChallenge
 
-##Technical test
+## Technical interview - backend challenge 
 
-Create two servers using express.
+Create two servers using express and Emulate Orchestator concepts.
 
 The first server will receive a GET request from the client (browser / postman).
 
